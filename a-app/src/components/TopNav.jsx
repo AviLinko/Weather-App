@@ -2,7 +2,7 @@ import React from 'react'
 import { PropTypes } from 'prop-types';
 import { MemoryRouter, Link, matchPath, useLocation } from 'react-router-dom';
 import {StaticRouter} from 'react-router-dom/server'
-import {AppBar, Box, Divider, Drawer, IconButton, List, ToolBar,Tabs, Tab, Typography} from '@mui/material'
+import {AppBar, Box, Divider, Drawer, IconButton, List, Toolbar,Tabs, Tab, Typography} from '@mui/material'
 import {Menu, Dashboard, Star , Map } from '@mui/icons-material'
 import logo from '../imgs/logo.png'
 
@@ -74,7 +74,7 @@ function TopNav(props) {
 return (
     <Box sx={{display: {sm:'none'}}}>
         <AppBar component = 'nav'>
-            <ToolBar>
+            <Toolbar>
                 <IconButton color = 'inherit'
                 aria-label="open drawer"
                 egde = "start"
@@ -86,7 +86,7 @@ return (
                 <Typography variant='h6' component= "div" sx={{flexGrow:1, display:{xs:'none',sm:'block'}}}>
                   cloud  
                 </Typography>
-            </ToolBar>
+            </Toolbar>
         </AppBar>
         <Box compopnent= 'nav'>
             <Drawer 
@@ -97,11 +97,12 @@ return (
             ModalProps={{
                 keepMounted: true,
             }} 
-            sx= {{display:{xs:'block',sm: 'none'}}}
+            sx= {{display: {xs:'block',sm: 'none'}, '& .MuiDrawer-paper': {boxSizing:'border-box',width:drawerWidth}}}
             >
+                {drawer}
             
             </Drawer>
-
+            <Toolbar/>
         </Box>
     </Box>
 )

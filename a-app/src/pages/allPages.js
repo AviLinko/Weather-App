@@ -1,3 +1,3 @@
-export { default as Dashboard } from './dashboard'
-export { default as Map } from './map'
-export { default as saves } from './saves'
+export { default as Dashboard } from './Dashboard'
+export { default as Map } from './Map'
+export { default as saves } from './Saves'
