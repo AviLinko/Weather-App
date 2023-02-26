@@ -80,12 +80,29 @@ return (
                 egde = "start"
                 onClick={handleDrawerToggle}
                 sx= {{mr:2, display:{sm:'none'}}}
-
                 >
-
+                <Menu/> 
                 </IconButton>
+                <Typography variant='h6' component= "div" sx={{flexGrow:1, display:{xs:'none',sm:'block'}}}>
+                  cloud  
+                </Typography>
             </ToolBar>
         </AppBar>
+        <Box compopnent= 'nav'>
+            <Drawer 
+            container = {container}
+            variant = 'temporary'
+            open = {mobileOpen}
+            onClose={handleDrawerToggle}
+            ModalProps={{
+                keepMounted: true,
+            }} 
+            sx= {{display:{xs:'block',sm: 'none'}}}
+            >
+            
+            </Drawer>
+
+        </Box>
     </Box>
 )
 }
