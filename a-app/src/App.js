@@ -16,7 +16,13 @@ const App = () => {
       <ThemeProvider theme = {theme}>
         <TopNav/>
         <DashboardContainer>
+          
           <LeftNav />
+          <MiddleContainer>
+            <Routes>
+              <Route path = '/' element ={<Dashboard/>}/>
+            </Routes>
+          </MiddleContainer>
         </DashboardContainer>
       </ThemeProvider>
     </div>
