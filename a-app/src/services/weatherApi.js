@@ -2,17 +2,18 @@ import { createApi,fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 
 const baseUrl = `https://weatherapi-com.p.rapidapi.com/`
 const weatherHeaders = {
-    'X-RapidAPI-Key': 'SIGN-UP-FOR-KEY',
+    'X-RapidAPI-Key': '5391480b57mshdbcdbe97864d542p136cd8jsn34f39ad40666',
 	'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
 }
+
 
 const requestWeather = (url) => ({url,headers:weatherHeaders})
 
 export const weatherApi = createApi({
     reducerPath: 'weatherApi',
-    basequey: fetchBaseQuery({baseUrl}),
+    baseQuery: fetchBaseQuery({baseUrl}),
     endpoints: (builder) => ({
-        getForcastWeather:builder.query({
+        getForecastWeather:builder.query({
             query:(location) => requestWeather(`forecast.json?q=${location}&days=3`)
         }),
         getSearchWeather:builder.query({

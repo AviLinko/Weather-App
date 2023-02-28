@@ -11,7 +11,7 @@ const initialState = {
 const weatherSlice = createSlice({
     name: 'weather',
     initialState,
-    reducer: {
+    reducers: {
         setLocation: (state, action) => {
             state.location = action.payload
         },
