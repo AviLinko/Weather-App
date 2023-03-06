@@ -1,61 +1,42 @@
-import React, {useEffect} from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import {setLocation} from '../services/weatherSlice'
-import{Box,Typography, Stack,Divider } from '@mui/material'
-import {useGetForecastWeatherQuery} from '../services/weatherApi'
-import Moment from 'react-moment'
-import useGeoLocation from '../hooks/useGeolocation'
-import WeatherChart from '../components/Charts'
-import TodaysOverView from '../components/TodaysOverview'
-import SearchBar from '../components/searchbar'
-import ThreeDaysForecast from '../components/ThreeDaysForecast'
-import Loader from '../components/Loader'
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setLocation } from '../services/weatherSlice';
+import { Box, Typography, Stack, Divider } from '@mui/material';
+import { useGetForecastWeatherQuery } from '../services/weatherApi';
+import Moment from 'react-moment';
+import useGeoLocation from '../hooks/useGeolocation';
+import WeatherChart from '../components/Charts';
+import TodaysOverView from '../components/TodaysOverview';
+import SearchBar from '../components/searchbar';
+import ThreeDaysForecast from '../components/ThreeDaysForecast';
+import Loader from '../components/Loader';
 
 const Dashboard = () => {
-  const getGeoLocation = useGeoLocation()
-  const isLoadingLocation = getGeoLocation.loaded
-  const locationState = useSelector((state) => state.weatherState)
-  const {data,isFetching} = useGetForecastWeatherQuery(locationState)
-  const dispatch = useDispatch()
+  const getGeoLocation = useGeoLocation();
+  const isLoadingLocation = getGeoLocation.loaded;
+  const locationState = useSelector((state) => state.weatherState);
+  const { data, isFetching } = useGetForecastWeatherQuery(locationState);
+  const dispatch = useDispatch();
 
-  const current = data?.current
-  const forecast = data?.forecast.forecastDay
-  const location = data?.location
-  const dateToFormat = location?.localtime
-console.log(locationState)
+  const current = data?.current;
+  const forecast = data?.forecast.forecastday;
+  const location = data?.location;
+  const dateToFormat = location?.localtime;
+
   useEffect(() => {
-    let currentLocation = ''
+      let currentLocation = '';
 
-    if(locationState) {
-      currentLocation = locationState
-    } else if( getGeoLocation?.loaded) currentLocation = [getGeoLocation?.coordinates.lat,getGeoLocation?.coordinates.lng,]
+      if (locationState) {
+        currentLocation = locationState;
+      } else if (getGeoLocation?.loaded) 
+        currentLocation = [getGeoLocation?.coordinates.lat, getGeoLocation?.coordinates.lng];
+        
+    })
 
-    dispatch(setLocation(currentLocation))
-    console.log(currentLocation)
-  },[dispatch,getGeoLocation?.coordinates.lat, getGeoLocation?.coordinates.lng,getGeoLocation?.loaded,locationState])
-
-  if (isFetching || !isLoadingLocation) return (
-    <div> Loading </div>
+  if(isFetching || !isLoadingLocation) return (
+    <div>Loading</div>
   )
-  return (
-    <Box p={4}>
-      <Stack
-      direction={{sm:'column', md: 'row'}}
-      justifyContent = "space-between"
-      sx={{ paddingBottom: 2}}
-      >
-        <Stack>
-          <Typography variant = 'h5'> {location?.name} </Typography>
-          <Typography variant = 'subtitle2'> {location?.region} </Typography>
-          <Typography variant = 'subtitle2'> <Moment format='LLL' date={{dateToFormat}} /> </Typography>
-        </Stack>
-        {/* <SearchBar location={location}/> */}
-      </Stack> 
-      {/* <TodaysOverView current={{current}} forecast={{forecast}} /> */}
-      {/* <ThreeDaysForecast forecast={{forecast}}/> */}
-      {/* <WeatherChart forecast={{ forecast}} /> */}
-    </Box>
-  )
-}
+  return <div>Dashboard</div>;
+};
 
-export default Dashboard
+export default Dashboard;
